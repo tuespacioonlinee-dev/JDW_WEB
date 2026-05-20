@@ -1,0 +1,21 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "tuespacioonlinee-dev"
+    labels:
+      - "dependencies"
+      - "security"
+    ignore:
+      # Only auto-update patch versions for major deps (manual review for minor+)
+      - dependency-name: "next"
+        update-types: ["version-update:semver-minor", "version-update:semver-major"]
+      - dependency-name: "@supabase/supabase-js"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@supabase/ssr"
+        update-types: ["version-update:semver-major"]
