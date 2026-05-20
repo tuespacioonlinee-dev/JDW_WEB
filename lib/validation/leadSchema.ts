@@ -16,10 +16,10 @@ export const leadSchema = z.object({
   phone: z.string().trim().max(30, 'error_phone_max').optional().or(z.literal('')),
   company: z.string().trim().max(150, 'error_company_max').optional().or(z.literal('')),
   project_type: z.enum(['saas', 'web', 'chatbot', 'integration', 'other'], {
-    errorMap: () => ({ message: 'error_project_type_required' }),
+    error: 'error_project_type_required',
   }),
   budget: z.enum(['<1M', '1-5M', '5-15M', '15M+', 'undecided'], {
-    errorMap: () => ({ message: 'error_budget_required' }),
+    error: 'error_budget_required',
   }),
   message: z
     .string()
