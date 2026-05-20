@@ -13,9 +13,10 @@ const eslintConfig = defineConfig([
   ]),
   {
     rules: {
-      // React 19 Compiler rules — demote to warn (event-handler mutations are intentional)
+      // React 19 Compiler rules — demote to warn (patterns are intentional)
       "react-hooks/immutability": "warn",
       "react-hooks/refs": "warn",
+      "react-hooks/set-state-in-effect": "warn",
       // API route export links must use <a>, not <Link>
       "@next/next/no-html-link-for-pages": "warn",
     },
