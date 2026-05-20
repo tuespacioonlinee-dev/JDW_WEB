@@ -19,14 +19,11 @@ const TYPEWRITER_WORDS_EN = ['needed yesterday.', 'always dreamed of.', 'sets yo
 function Typewriter({ words }: { words: string[] }) {
   const shouldReduceMotion = useReducedMotion();
   const [index, setIndex] = useState(0);
-  const [displayed, setDisplayed] = useState('');
+  const [displayed, setDisplayed] = useState(() => (shouldReduceMotion ? (words[0] ?? '') : ''));
   const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
-    if (shouldReduceMotion) {
-      setDisplayed(words[0] ?? '');
-      return;
-    }
+    if (shouldReduceMotion) return;
 
     const word = words[index % words.length] ?? '';
     let timeout: ReturnType<typeof setTimeout>;

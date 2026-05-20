@@ -44,7 +44,7 @@ export default function Process() {
             />
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-6">
-              {STEPS.map((n, i) => (
+              {STEPS.map((n) => (
                 <motion.div
                   key={n}
                   variants={fadeInUp}

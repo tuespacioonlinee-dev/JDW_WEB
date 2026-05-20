@@ -5,7 +5,7 @@ import { Link } from '@/i18n/navigation';
 import { motion } from 'framer-motion';
 import Container from '@/components/ui/Container';
 import Badge from '@/components/ui/Badge';
-import { fadeInUp, slideInLeft, slideInRight, staggerContainer, viewportOnce } from '@/components/motion/variants';
+import { slideInLeft, slideInRight, staggerContainer, viewportOnce } from '@/components/motion/variants';
 import { ArrowRight } from 'lucide-react';
 
 const CASE_METRICS = ['metric_1', 'metric_2', 'metric_3'] as const;
