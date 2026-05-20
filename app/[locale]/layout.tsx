@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
+import { headers } from 'next/headers';
 import { routing } from '@/i18n/routing';
 import '../globals.css';
 
@@ -48,9 +49,10 @@ export default async function LocaleLayout({ children, params }: Props) {
   }
 
   const messages = await getMessages();
+  const nonce = (await headers()).get('x-nonce') ?? '';
 
   return (
-    <html lang={locale} className={`${inter.variable} scroll-smooth`}>
+    <html lang={locale} nonce={nonce} className={`${inter.variable} scroll-smooth`}>
       <body className="bg-bg-base text-primary antialiased">
         <NextIntlClientProvider messages={messages}>
           {children}

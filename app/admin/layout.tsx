@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { headers } from 'next/headers';
 import '../globals.css';
 import { Toaster } from 'sonner';
 
@@ -14,9 +15,10 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function AdminRootLayout({ children }: { children: React.ReactNode }) {
+export default async function AdminRootLayout({ children }: { children: React.ReactNode }) {
+  const nonce = (await headers()).get('x-nonce') ?? '';
   return (
-    <html lang="es" className={`${inter.variable}`}>
+    <html lang="es" nonce={nonce} className={`${inter.variable}`}>
       <body className="bg-bg-base text-primary antialiased">
         {children}
         <Toaster richColors theme="dark" position="top-right" />
