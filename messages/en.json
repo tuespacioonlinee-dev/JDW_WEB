@@ -1,0 +1,183 @@
+{
+  "nav": {
+    "services": "Services",
+    "work": "Work",
+    "about": "About",
+    "contact": "Contact",
+    "cta": "Book a meeting",
+    "menu_open": "Open menu",
+    "menu_close": "Close menu"
+  },
+  "hero": {
+    "badge": "Building software from Tucumán for all of LATAM",
+    "title_line1": "Software your business",
+    "title_line2": "needed yesterday.",
+    "subtitle": "We design and develop custom CRMs, websites, chatbots, and integrations. From idea to deploy, with AI at the core.",
+    "cta_primary": "Book a meeting →",
+    "cta_secondary": "See our work",
+    "trust": "Trusted by:"
+  },
+  "services": {
+    "eyebrow": "What we do",
+    "title": "Solutions that scale with your business",
+    "subtitle": "Every project is different. We choose the right technology for each problem.",
+    "saas": {
+      "title": "SaaS & CRMs",
+      "description": "Custom platforms that grow with your company.",
+      "bullet_1": "Scalable architecture",
+      "bullet_2": "Multi-tenant",
+      "bullet_3": "Reports and dashboards",
+      "bullet_4": "Third-party API integrations"
+    },
+    "web": {
+      "title": "Websites & Landings",
+      "description": "Sites that convert visitors into customers.",
+      "bullet_1": "95+ Lighthouse performance",
+      "bullet_2": "Technical SEO",
+      "bullet_3": "No-code editable CMS",
+      "bullet_4": "Built-in analytics"
+    },
+    "ai": {
+      "title": "Chatbots & AI",
+      "description": "Intelligent agents that work for you 24/7.",
+      "bullet_1": "24/7 automated support",
+      "bullet_2": "Agents with tools and memory",
+      "bullet_3": "RAG over your data",
+      "bullet_4": "Multi-channel: web, WhatsApp, Slack"
+    },
+    "integrations": {
+      "title": "Integrations",
+      "description": "We connect your systems so everything flows.",
+      "bullet_1": "ERP + e-commerce",
+      "bullet_2": "Payments with MercadoPago / Stripe",
+      "bullet_3": "Invoice automation",
+      "bullet_4": "Workflows with n8n"
+    },
+    "stack_label": "Stack:"
+  },
+  "metrics": {
+    "projects_value": "3",
+    "projects_label": "projects in production",
+    "delivery_value": "100%",
+    "delivery_label": "on-time delivery",
+    "response_value": "<24h",
+    "response_label": "response time",
+    "experience_value": "8 years",
+    "experience_label": "combined experience"
+  },
+  "process": {
+    "eyebrow": "How we work",
+    "title": "From idea to deploy, no detours",
+    "step_1_title": "Empathize",
+    "step_1_desc": "We understand your business, your users, and the real problem you want to solve.",
+    "step_2_title": "Define",
+    "step_2_desc": "Clear scope, chosen stack, agreed milestones. No surprises.",
+    "step_3_title": "Prototype",
+    "step_3_desc": "We iterate fast with functional design before writing code.",
+    "step_4_title": "Deliver & Scale",
+    "step_4_desc": "Production deploy, green metrics, post-launch support."
+  },
+  "featured_case": {
+    "eyebrow": "Success story",
+    "title": "Ofikio: the CRM that replaced WhatsApp and spreadsheets",
+    "description": "Ofikio rents office furniture. They used to manage everything through WhatsApp and Excel. Today they have a custom CRM with inventory management, contracts, and billing.",
+    "metric_1_value": "212",
+    "metric_1_label": "items in inventory",
+    "metric_2_value": "+30",
+    "metric_2_label": "features delivered",
+    "metric_3_value": "4 months",
+    "metric_3_label": "from idea to MVP in production",
+    "link": "Read full case →"
+  },
+  "stack_section": {
+    "eyebrow": "Technologies",
+    "title": "The stack we use"
+  },
+  "why": {
+    "eyebrow": "Why JDC",
+    "title": "We're not consultants. We're your tech team.",
+    "col_1_title": "AI-first",
+    "col_1_desc": "We build with AI at every layer of the product, from the frontend to data pipelines.",
+    "col_2_title": "LATAM-native",
+    "col_2_desc": "We speak your technical and cultural language. MercadoPago, WhatsApp Business — we know them from the inside.",
+    "col_3_title": "From idea to production in weeks",
+    "col_3_desc": "Real MVPs that generate learning, not PowerPoints that generate meetings."
+  },
+  "cta_final": {
+    "title": "Got a project in mind?",
+    "subtitle": "Tell us what you're building. We'll get back to you within 24 hours.",
+    "cta": "Book a meeting →",
+    "email_prefix": "or write to us at",
+    "email": "hello@jdcdevelopers.com"
+  },
+  "footer": {
+    "nav_title": "Navigation",
+    "services": "Services",
+    "work": "Work",
+    "about": "About",
+    "contact": "Contact",
+    "contact_title": "Contact",
+    "email": "hello@jdcdevelopers.com",
+    "location": "Tucumán, Argentina",
+    "social_title": "Social",
+    "copyright": "© {year} JDC Developers",
+    "made_with": "Made with ☕ in Tucumán, Argentina"
+  },
+  "contact_form": {
+    "title": "Tell us about your project",
+    "subtitle": "We'll get back to you within 24 hours. No commitment.",
+    "name_label": "Name",
+    "name_placeholder": "Your name",
+    "email_label": "Email",
+    "email_placeholder": "you@company.com",
+    "phone_label": "WhatsApp (optional)",
+    "phone_placeholder": "+1 555 000 0000",
+    "company_label": "Company (optional)",
+    "company_placeholder": "Your company name",
+    "project_type_label": "Project type",
+    "project_type_placeholder": "Select an option",
+    "project_saas": "Custom SaaS / CRM",
+    "project_web": "Website or landing page",
+    "project_chatbot": "Chatbot or AI agent",
+    "project_integration": "System integration",
+    "project_other": "Other",
+    "budget_label": "Estimated budget",
+    "budget_placeholder": "Select a range",
+    "budget_lt1m": "Under $1,000,000 ARS",
+    "budget_1to5m": "$1,000,000 – $5,000,000 ARS",
+    "budget_5to15m": "$5,000,000 – $15,000,000 ARS",
+    "budget_gt15m": "Over $15,000,000 ARS",
+    "budget_undecided": "Not defined yet",
+    "message_label": "Tell us more",
+    "message_placeholder": "What do you want to build? The more detail, the better.",
+    "submit": "Send message",
+    "submitting": "Sending...",
+    "or_calendly": "Or schedule directly on Calendly →",
+    "error_name_min": "Name must be at least 2 characters",
+    "error_name_max": "Name cannot exceed 100 characters",
+    "error_name_invalid": "Name can only contain letters, spaces, hyphens, and dots",
+    "error_email_invalid": "Invalid email address",
+    "error_email_max": "Email cannot exceed 254 characters",
+    "error_phone_max": "Phone cannot exceed 30 characters",
+    "error_company_max": "Company name cannot exceed 150 characters",
+    "error_project_type_required": "Please select a project type",
+    "error_budget_required": "Please select a budget range",
+    "error_message_min": "Message must be at least 20 characters",
+    "error_message_max": "Message cannot exceed 2000 characters",
+    "error_generic": "Something went wrong. Please try again or email us at hello@jdcdevelopers.com"
+  },
+  "thanks": {
+    "title": "Message received!",
+    "subtitle": "We'll get back to you within 24 hours. In the meantime, you can schedule a meeting directly.",
+    "cta_calendly": "Schedule on Calendly →",
+    "cta_back": "Back to home"
+  },
+  "errors": {
+    "not_found_title": "Page not found",
+    "not_found_subtitle": "The page you're looking for doesn't exist or has been moved.",
+    "not_found_cta": "Back to home",
+    "server_error_title": "Something went wrong",
+    "server_error_subtitle": "We're working on fixing it.",
+    "server_error_cta": "Try again"
+  }
+}

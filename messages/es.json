@@ -1,0 +1,183 @@
+{
+  "nav": {
+    "services": "Servicios",
+    "work": "Trabajo",
+    "about": "Nosotros",
+    "contact": "Contacto",
+    "cta": "Agendar reunión",
+    "menu_open": "Abrir menú",
+    "menu_close": "Cerrar menú"
+  },
+  "hero": {
+    "badge": "Construimos software desde Tucumán para toda LATAM",
+    "title_line1": "Software que tu negocio",
+    "title_line2": "necesitaba ayer.",
+    "subtitle": "Diseñamos y desarrollamos CRMs, webs, chatbots e integraciones a medida. De la idea al deploy, con IA en el corazón.",
+    "cta_primary": "Agendá una reunión →",
+    "cta_secondary": "Ver casos",
+    "trust": "Confían en nosotros:"
+  },
+  "services": {
+    "eyebrow": "Lo que hacemos",
+    "title": "Soluciones que escalan con tu negocio",
+    "subtitle": "Cada proyecto es diferente. Elegimos la tecnología correcta para cada problema.",
+    "saas": {
+      "title": "SaaS y CRMs",
+      "description": "Plataformas a medida que crecen con tu empresa.",
+      "bullet_1": "Arquitectura escalable",
+      "bullet_2": "Multi-tenant",
+      "bullet_3": "Reportes y dashboards",
+      "bullet_4": "Integraciones con APIs externas"
+    },
+    "web": {
+      "title": "Webs y Landings",
+      "description": "Sitios que convierten visitantes en clientes.",
+      "bullet_1": "Performance 95+ en Lighthouse",
+      "bullet_2": "SEO técnico",
+      "bullet_3": "CMS editable sin código",
+      "bullet_4": "Analytics integrado"
+    },
+    "ai": {
+      "title": "Chatbots e IA",
+      "description": "Agentes inteligentes que trabajan por vos 24/7.",
+      "bullet_1": "Atención 24/7 automatizada",
+      "bullet_2": "Agentes con tools y memoria",
+      "bullet_3": "RAG sobre tus datos",
+      "bullet_4": "Multi-canal: web, WhatsApp, Slack"
+    },
+    "integrations": {
+      "title": "Integraciones",
+      "description": "Conectamos tus sistemas para que todo fluya.",
+      "bullet_1": "ERP + e-commerce",
+      "bullet_2": "Pagos con Mercado Pago / Stripe",
+      "bullet_3": "Facturación AFIP",
+      "bullet_4": "Automatizaciones con n8n"
+    },
+    "stack_label": "Stack:"
+  },
+  "metrics": {
+    "projects_value": "3",
+    "projects_label": "proyectos en producción",
+    "delivery_value": "100%",
+    "delivery_label": "entregas a tiempo",
+    "response_value": "<24hs",
+    "response_label": "tiempo de respuesta",
+    "experience_value": "8 años",
+    "experience_label": "experiencia combinada"
+  },
+  "process": {
+    "eyebrow": "Cómo trabajamos",
+    "title": "De la idea al deploy, sin vueltas",
+    "step_1_title": "Empatizar",
+    "step_1_desc": "Entendemos tu negocio, tus usuarios y el problema real que querés resolver.",
+    "step_2_title": "Definir",
+    "step_2_desc": "Scope claro, stack elegido, milestones acordados. Sin sorpresas.",
+    "step_3_title": "Prototipar",
+    "step_3_desc": "Iteramos rápido con diseño funcional antes de escribir código.",
+    "step_4_title": "Entregar y Escalar",
+    "step_4_desc": "Deploy a producción, métricas en verde, soporte post-lanzamiento."
+  },
+  "featured_case": {
+    "eyebrow": "Caso de éxito",
+    "title": "Ofikio: el CRM que reemplazó WhatsApp y planillas",
+    "description": "Ofikio es una empresa de alquiler de mobiliario de oficina. Antes gestionaban todo por WhatsApp y Excel. Hoy tienen un CRM propio con gestión de inventario, contratos y facturación.",
+    "metric_1_value": "212",
+    "metric_1_label": "materiales en inventario",
+    "metric_2_value": "+30",
+    "metric_2_label": "features entregadas",
+    "metric_3_value": "4 meses",
+    "metric_3_label": "de idea a MVP en producción",
+    "link": "Leer caso completo →"
+  },
+  "stack_section": {
+    "eyebrow": "Tecnologías",
+    "title": "El stack que usamos"
+  },
+  "why": {
+    "eyebrow": "Por qué JDC",
+    "title": "No somos consultores. Somos tu equipo técnico.",
+    "col_1_title": "AI-first",
+    "col_1_desc": "Construimos con IA en cada capa del producto, desde el frontend hasta los pipelines de datos.",
+    "col_2_title": "LATAM-native",
+    "col_2_desc": "Hablamos tu idioma técnico y cultural. AFIP, Mercado Pago, WhatsApp Business — los conocemos de adentro.",
+    "col_3_title": "De idea a producción en semanas",
+    "col_3_desc": "MVPs reales que generan aprendizaje, no PowerPoints que generan reuniones."
+  },
+  "cta_final": {
+    "title": "¿Tenés un proyecto en mente?",
+    "subtitle": "Contanos en qué estás trabajando. Te respondemos en menos de 24hs.",
+    "cta": "Agendá una reunión →",
+    "email_prefix": "o escribinos a",
+    "email": "hola@jdcdevelopers.com"
+  },
+  "footer": {
+    "nav_title": "Navegación",
+    "services": "Servicios",
+    "work": "Trabajo",
+    "about": "Nosotros",
+    "contact": "Contacto",
+    "contact_title": "Contacto",
+    "email": "hola@jdcdevelopers.com",
+    "location": "Tucumán, Argentina",
+    "social_title": "Redes",
+    "copyright": "© {year} JDC Developers",
+    "made_with": "Hecho con ☕ en Tucumán, Argentina"
+  },
+  "contact_form": {
+    "title": "Contanos tu proyecto",
+    "subtitle": "Te respondemos en menos de 24hs. Sin compromiso.",
+    "name_label": "Nombre",
+    "name_placeholder": "Tu nombre",
+    "email_label": "Email",
+    "email_placeholder": "vos@empresa.com",
+    "phone_label": "WhatsApp (opcional)",
+    "phone_placeholder": "+54 381 000 0000",
+    "company_label": "Empresa (opcional)",
+    "company_placeholder": "Nombre de tu empresa",
+    "project_type_label": "Tipo de proyecto",
+    "project_type_placeholder": "Seleccioná una opción",
+    "project_saas": "SaaS / CRM a medida",
+    "project_web": "Web o landing page",
+    "project_chatbot": "Chatbot o agente IA",
+    "project_integration": "Integración de sistemas",
+    "project_other": "Otro",
+    "budget_label": "Presupuesto estimado",
+    "budget_placeholder": "Seleccioná un rango",
+    "budget_lt1m": "Menos de $1.000.000",
+    "budget_1to5m": "$1.000.000 – $5.000.000",
+    "budget_5to15m": "$5.000.000 – $15.000.000",
+    "budget_gt15m": "Más de $15.000.000",
+    "budget_undecided": "No lo tengo definido aún",
+    "message_label": "Contanos más",
+    "message_placeholder": "¿Qué querés construir? Cuánto más detalle, mejor.",
+    "submit": "Enviar mensaje",
+    "submitting": "Enviando...",
+    "or_calendly": "O agendá directo en Calendly →",
+    "error_name_min": "El nombre debe tener al menos 2 caracteres",
+    "error_name_max": "El nombre no puede tener más de 100 caracteres",
+    "error_name_invalid": "El nombre solo puede contener letras, espacios, guiones y puntos",
+    "error_email_invalid": "Email inválido",
+    "error_email_max": "El email no puede tener más de 254 caracteres",
+    "error_phone_max": "El teléfono no puede tener más de 30 caracteres",
+    "error_company_max": "El nombre de la empresa no puede tener más de 150 caracteres",
+    "error_project_type_required": "Seleccioná un tipo de proyecto",
+    "error_budget_required": "Seleccioná un presupuesto",
+    "error_message_min": "El mensaje debe tener al menos 20 caracteres",
+    "error_message_max": "El mensaje no puede tener más de 2000 caracteres",
+    "error_generic": "Algo salió mal. Intentá de nuevo o escribinos a hola@jdcdevelopers.com"
+  },
+  "thanks": {
+    "title": "¡Mensaje recibido!",
+    "subtitle": "Te respondemos en menos de 24hs. Mientras tanto, podés agendar una reunión directamente.",
+    "cta_calendly": "Agendar en Calendly →",
+    "cta_back": "Volver al inicio"
+  },
+  "errors": {
+    "not_found_title": "Página no encontrada",
+    "not_found_subtitle": "La página que buscás no existe o fue movida.",
+    "not_found_cta": "Volver al inicio",
+    "server_error_title": "Algo salió mal",
+    "server_error_subtitle": "Estamos trabajando para resolverlo.",
+    "server_error_cta": "Intentar de nuevo"
+  }
+}
