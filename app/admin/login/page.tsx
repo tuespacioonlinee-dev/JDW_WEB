@@ -1,37 +1,73 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import Button from '@/components/ui/Button';
 import Input from '@/components/ui/Input';
-import { Mail, CheckCircle } from 'lucide-react';
+import { Mail, KeyRound, ArrowLeft } from 'lucide-react';
 import { toast } from 'sonner';
 
+type Step = 'email' | 'otp';
+
 export default function AdminLoginPage() {
+  const router = useRouter();
+  const [step, setStep] = useState<Step>('email');
   const [email, setEmail] = useState('');
-  const [sent, setSent] = useState(false);
+  const [code, setCode] = useState('');
   const [loading, setLoading] = useState(false);
 
-  async function handleSubmit(e: React.FormEvent) {
+  async function handleRequestCode(e: React.FormEvent) {
     e.preventDefault();
-    if (!email.trim()) return;
+    const cleanEmail = email.trim().toLowerCase();
+    if (!cleanEmail) return;
 
     setLoading(true);
     try {
       const supabase = createClient();
       const { error } = await supabase.auth.signInWithOtp({
-        email: email.trim().toLowerCase(),
-        options: {
-          emailRedirectTo: `${window.location.origin}/admin/auth/callback`,
-        },
+        email: cleanEmail,
+        options: { shouldCreateUser: true },
       });
 
       if (error) {
-        toast.error('Error al enviar el link. Verificá el email.');
+        toast.error('Error al enviar el código. Verificá el email.');
         return;
       }
 
-      setSent(true);
+      toast.success('Código enviado. Revisá tu mail.');
+      setStep('otp');
+    } catch {
+      toast.error('Error inesperado. Intentá de nuevo.');
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function handleVerifyCode(e: React.FormEvent) {
+    e.preventDefault();
+    const cleanCode = code.trim();
+    if (cleanCode.length !== 6) {
+      toast.error('El código tiene 6 dígitos.');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const supabase = createClient();
+      const { error } = await supabase.auth.verifyOtp({
+        email: email.trim().toLowerCase(),
+        token: cleanCode,
+        type: 'email',
+      });
+
+      if (error) {
+        toast.error('Código incorrecto o expirado.');
+        return;
+      }
+
+      router.push('/admin');
+      router.refresh();
     } catch {
       toast.error('Error inesperado. Intentá de nuevo.');
     } finally {
@@ -42,7 +78,6 @@ export default function AdminLoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center px-6">
       <div className="w-full max-w-sm">
-        {/* Logo */}
         <div className="text-center mb-8">
           <span className="text-2xl font-semibold text-primary tracking-tight">
             JDC<span className="text-accent-purple">.</span>
@@ -50,42 +85,75 @@ export default function AdminLoginPage() {
           <p className="text-sm text-dim mt-1">Panel de administración</p>
         </div>
 
-        {sent ? (
-          <div className="bg-bg-surface border border-border rounded-2xl p-8 text-center flex flex-col items-center gap-4">
-            <div className="w-12 h-12 rounded-full bg-[rgba(93,202,165,0.1)] border border-[rgba(93,202,165,0.2)] flex items-center justify-center">
-              <CheckCircle size={24} className="text-accent-teal" aria-hidden="true" />
-            </div>
-            <div>
-              <p className="font-medium text-primary">Link enviado</p>
-              <p className="text-sm text-muted mt-1">
-                Revisá tu casilla <strong>{email}</strong> y hacé click en el link.
+        <div className="bg-bg-surface border border-border rounded-2xl p-8">
+          {step === 'email' ? (
+            <>
+              <h1 className="text-lg font-medium text-primary mb-6">Acceder al panel</h1>
+              <form onSubmit={handleRequestCode} className="flex flex-col gap-4">
+                <Input
+                  id="email"
+                  type="email"
+                  label="Email"
+                  placeholder="vos@jdcdevelopers.com"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  autoComplete="email"
+                  autoFocus
+                />
+                <Button type="submit" loading={loading} className="w-full gap-2">
+                  <Mail size={16} aria-hidden="true" />
+                  Enviarme un código
+                </Button>
+              </form>
+              <p className="text-xs text-dim text-center mt-4">
+                Solo emails autorizados pueden acceder.
               </p>
-            </div>
-          </div>
-        ) : (
-          <div className="bg-bg-surface border border-border rounded-2xl p-8">
-            <h1 className="text-lg font-medium text-primary mb-6">Acceder al panel</h1>
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-              <Input
-                id="email"
-                type="email"
-                label="Email"
-                placeholder="vos@jdcdevelopers.com"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                autoComplete="email"
-              />
-              <Button type="submit" loading={loading} className="w-full gap-2">
-                <Mail size={16} aria-hidden="true" />
-                Enviarme link de acceso
-              </Button>
-            </form>
-            <p className="text-xs text-dim text-center mt-4">
-              Solo emails autorizados pueden acceder.
-            </p>
-          </div>
-        )}
+            </>
+          ) : (
+            <>
+              <button
+                type="button"
+                onClick={() => {
+                  setStep('email');
+                  setCode('');
+                }}
+                className="flex items-center gap-1.5 text-xs text-dim hover:text-primary transition-colors mb-4"
+              >
+                <ArrowLeft size={12} aria-hidden="true" />
+                Cambiar email
+              </button>
+              <h1 className="text-lg font-medium text-primary mb-2">Ingresá el código</h1>
+              <p className="text-sm text-muted mb-6">
+                Te mandamos un código de 6 dígitos a <strong className="text-primary">{email}</strong>.
+              </p>
+              <form onSubmit={handleVerifyCode} className="flex flex-col gap-4">
+                <Input
+                  id="code"
+                  type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]{6}"
+                  maxLength={6}
+                  label="Código de 6 dígitos"
+                  placeholder="000000"
+                  required
+                  value={code}
+                  onChange={(e) => setCode(e.target.value.replace(/\D/g, ''))}
+                  autoComplete="one-time-code"
+                  autoFocus
+                  className="text-center text-lg tracking-[0.5em] font-mono"
+                />
+                <Button type="submit" loading={loading} disabled={code.length !== 6} className="w-full gap-2">
+                  <KeyRound size={16} aria-hidden="true" />
+                  Verificar y entrar
+                </Button>
+              </form>
+              <p className="text-xs text-dim text-center mt-4">
+                ¿No te llegó? Revisá la carpeta de spam.
+              </p>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );
