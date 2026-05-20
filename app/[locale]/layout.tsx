@@ -51,7 +51,7 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   return (
     <html lang={locale} className={`${inter.variable} scroll-smooth`}>
-      <body className="bg-base text-primary antialiased">
+      <body className="bg-bg-base text-primary antialiased">
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>
