@@ -2,41 +2,37 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { createClient } from '@/lib/supabase/client';
 import Button from '@/components/ui/Button';
 import Input from '@/components/ui/Input';
-import { Mail, KeyRound, ArrowLeft } from 'lucide-react';
+import { Mail, KeyRound, ArrowLeft, Lock } from 'lucide-react';
 import { toast } from 'sonner';
 
-type Step = 'email' | 'otp';
+type Step = 'idle' | 'code';
 
 export default function AdminLoginPage() {
   const router = useRouter();
-  const [step, setStep] = useState<Step>('email');
-  const [email, setEmail] = useState('');
+  const [step, setStep] = useState<Step>('idle');
   const [code, setCode] = useState('');
   const [loading, setLoading] = useState(false);
 
-  async function handleRequestCode(e: React.FormEvent) {
-    e.preventDefault();
-    const cleanEmail = email.trim().toLowerCase();
-    if (!cleanEmail) return;
-
+  async function handleRequestCode() {
     setLoading(true);
     try {
-      const supabase = createClient();
-      const { error } = await supabase.auth.signInWithOtp({
-        email: cleanEmail,
-        options: { shouldCreateUser: true },
-      });
+      const res = await fetch('/api/admin/request-otp', { method: 'POST' });
 
-      if (error) {
-        toast.error('Error al enviar el código. Verificá el email.');
+      if (res.status === 429) {
+        toast.error('Demasiados intentos. Esperá unos minutos.');
         return;
       }
 
-      toast.success('Código enviado. Revisá tu mail.');
-      setStep('otp');
+      const json = (await res.json()) as { ok: boolean };
+      if (!json.ok) {
+        toast.error('No pudimos enviar el código. Probá de nuevo en un rato.');
+        return;
+      }
+
+      toast.success('Código enviado al mail del admin.');
+      setStep('code');
     } catch {
       toast.error('Error inesperado. Intentá de nuevo.');
     } finally {
@@ -54,14 +50,19 @@ export default function AdminLoginPage() {
 
     setLoading(true);
     try {
-      const supabase = createClient();
-      const { error } = await supabase.auth.verifyOtp({
-        email: email.trim().toLowerCase(),
-        token: cleanCode,
-        type: 'email',
+      const res = await fetch('/api/admin/verify-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: cleanCode }),
       });
 
-      if (error) {
+      if (res.status === 429) {
+        toast.error('Demasiados intentos. Esperá unos minutos.');
+        return;
+      }
+
+      const json = (await res.json()) as { ok: boolean };
+      if (!json.ok) {
         toast.error('Código incorrecto o expirado.');
         return;
       }
@@ -86,46 +87,42 @@ export default function AdminLoginPage() {
         </div>
 
         <div className="bg-bg-surface border border-border rounded-2xl p-8">
-          {step === 'email' ? (
+          {step === 'idle' ? (
             <>
-              <h1 className="text-lg font-medium text-primary mb-6">Acceder al panel</h1>
-              <form onSubmit={handleRequestCode} className="flex flex-col gap-4">
-                <Input
-                  id="email"
-                  type="email"
-                  label="Email"
-                  placeholder="vos@jdcdevelopers.com"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  autoComplete="email"
-                  autoFocus
-                />
-                <Button type="submit" loading={loading} className="w-full gap-2">
-                  <Mail size={16} aria-hidden="true" />
-                  Enviarme un código
-                </Button>
-              </form>
-              <p className="text-xs text-dim text-center mt-4">
-                Solo emails autorizados pueden acceder.
-              </p>
+              <div className="flex flex-col items-center text-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-full bg-[rgba(127,119,221,0.1)] border border-[rgba(127,119,221,0.2)] flex items-center justify-center">
+                  <Lock size={18} className="text-accent-purple" aria-hidden="true" />
+                </div>
+                <h1 className="text-lg font-medium text-primary">Acceso restringido</h1>
+                <p className="text-sm text-muted leading-relaxed">
+                  Hacé click para recibir un código de 6 dígitos en el mail del administrador.
+                </p>
+              </div>
+              <Button
+                onClick={handleRequestCode}
+                loading={loading}
+                className="w-full gap-2"
+              >
+                <Mail size={16} aria-hidden="true" />
+                Solicitar código
+              </Button>
             </>
           ) : (
             <>
               <button
                 type="button"
                 onClick={() => {
-                  setStep('email');
+                  setStep('idle');
                   setCode('');
                 }}
                 className="flex items-center gap-1.5 text-xs text-dim hover:text-primary transition-colors mb-4"
               >
                 <ArrowLeft size={12} aria-hidden="true" />
-                Cambiar email
+                Volver
               </button>
               <h1 className="text-lg font-medium text-primary mb-2">Ingresá el código</h1>
               <p className="text-sm text-muted mb-6">
-                Te mandamos un código de 6 dígitos a <strong className="text-primary">{email}</strong>.
+                Te enviamos un código de 6 dígitos al mail del administrador.
               </p>
               <form onSubmit={handleVerifyCode} className="flex flex-col gap-4">
                 <Input
