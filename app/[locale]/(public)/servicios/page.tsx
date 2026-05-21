@@ -5,6 +5,7 @@ import Footer from '@/components/sections/Footer';
 import Services from '@/components/sections/Services';
 import CtaFinal from '@/components/sections/CtaFinal';
 import Container from '@/components/ui/Container';
+import { getSettings } from '@/lib/services/settingsService';
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -16,6 +17,8 @@ export const metadata: Metadata = {
 export default async function ServiciosPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
+
+  const settings = await getSettings();
 
   return (
     <>
@@ -29,7 +32,7 @@ export default async function ServiciosPage({ params }: Props) {
           </Container>
           <Services />
         </div>
-        <CtaFinal />
+        <CtaFinal calendlyUrl={settings.calendly_url} />
       </main>
       <Footer />
     </>

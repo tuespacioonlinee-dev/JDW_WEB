@@ -5,6 +5,7 @@ import Footer from '@/components/sections/Footer';
 import CtaFinal from '@/components/sections/CtaFinal';
 import Container from '@/components/ui/Container';
 import Card from '@/components/ui/Card';
+import { getSettings } from '@/lib/services/settingsService';
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -34,6 +35,8 @@ const TEAM = [
 export default async function NosotrosPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
+
+  const settings = await getSettings();
 
   return (
     <>
@@ -92,7 +95,7 @@ export default async function NosotrosPage({ params }: Props) {
             </div>
           </div>
         </Container>
-        <CtaFinal />
+        <CtaFinal calendlyUrl={settings.calendly_url} />
       </main>
       <Footer />
     </>

@@ -1,6 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import { motion } from 'framer-motion';
 import Container from '@/components/ui/Container';
@@ -10,7 +11,11 @@ import { ArrowRight } from 'lucide-react';
 
 const CASE_METRICS = ['metric_1', 'metric_2', 'metric_3'] as const;
 
-export default function FeaturedCase() {
+type Props = {
+  imageUrl?: string | null;
+};
+
+export default function FeaturedCase({ imageUrl }: Props) {
   const t = useTranslations('featured_case');
 
   return (
@@ -26,22 +31,32 @@ export default function FeaturedCase() {
           viewport={viewportOnce}
           className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
         >
-          {/* Mockup placeholder — left */}
+          {/* Image / mockup — left */}
           <motion.div variants={slideInLeft}>
-            <div className="aspect-video bg-bg-elevated border border-border rounded-2xl flex items-center justify-center overflow-hidden">
-              <div className="flex flex-col items-center gap-3 text-dim">
-                {/* Simplified UI mockup */}
-                <div className="w-full px-8">
-                  <div className="h-8 bg-bg-surface rounded-lg mb-3" />
-                  <div className="grid grid-cols-3 gap-2 mb-3">
-                    {[...Array(3)].map((_, i) => (
-                      <div key={i} className="h-16 bg-bg-surface rounded-lg" />
-                    ))}
+            <div className="relative aspect-video bg-bg-elevated border border-border rounded-2xl flex items-center justify-center overflow-hidden">
+              {imageUrl ? (
+                <Image
+                  src={imageUrl}
+                  alt={t('title')}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              ) : (
+                <div className="flex flex-col items-center gap-3 text-dim">
+                  {/* Simplified UI mockup */}
+                  <div className="w-full px-8">
+                    <div className="h-8 bg-bg-surface rounded-lg mb-3" />
+                    <div className="grid grid-cols-3 gap-2 mb-3">
+                      {[...Array(3)].map((_, i) => (
+                        <div key={i} className="h-16 bg-bg-surface rounded-lg" />
+                      ))}
+                    </div>
+                    <div className="h-24 bg-bg-surface rounded-lg" />
                   </div>
-                  <div className="h-24 bg-bg-surface rounded-lg" />
+                  <span className="text-xs">Ofikio CRM</span>
                 </div>
-                <span className="text-xs">Ofikio CRM</span>
-              </div>
+              )}
             </div>
           </motion.div>
 

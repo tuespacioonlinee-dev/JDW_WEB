@@ -39,7 +39,11 @@ declare global {
   }
 }
 
-export default function ContactForm() {
+type Props = {
+  calendlyUrl?: string;
+};
+
+export default function ContactForm({ calendlyUrl }: Props) {
   const t = useTranslations('contact_form');
   const locale = useLocale();
   const router = useRouter();
@@ -232,7 +236,7 @@ export default function ContactForm() {
         </Button>
 
         <a
-          href={process.env.NEXT_PUBLIC_CALENDLY_URL ?? '#'}
+          href={calendlyUrl || process.env.NEXT_PUBLIC_CALENDLY_URL || '#'}
           target="_blank"
           rel="noopener noreferrer"
           className="text-sm text-muted hover:text-primary transition-colors"

@@ -1,6 +1,7 @@
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import Container from '@/components/ui/Container';
+import { getSettings } from '@/lib/services/settingsService';
 
 function IconGithub() {
   return (
@@ -33,15 +34,19 @@ const NAV_LINKS = [
   { href: '/contacto' as const, key: 'contact' },
 ] as const;
 
-const SOCIAL_LINKS = [
-  { href: 'https://github.com/jdcdevelopers', label: 'GitHub', Icon: IconGithub },
-  { href: 'https://linkedin.com/company/jdcdevelopers', label: 'LinkedIn', Icon: IconLinkedin },
-  { href: 'https://twitter.com/jdcdevelopers', label: 'Twitter / X', Icon: IconX },
-] as const;
-
-export default function Footer() {
-  const t = useTranslations('footer');
+export default async function Footer() {
+  const t = await getTranslations('footer');
+  const settings = await getSettings();
   const year = new Date().getFullYear().toString();
+
+  const email = settings.contact_email || t('email');
+  const location = settings.contact_location || t('location');
+
+  const socialLinks = [
+    { href: settings.social_github, label: 'GitHub', Icon: IconGithub },
+    { href: settings.social_linkedin, label: 'LinkedIn', Icon: IconLinkedin },
+    { href: settings.social_x, label: 'Twitter / X', Icon: IconX },
+  ].filter((s) => Boolean(s.href));
 
   return (
     <footer className="border-t border-border py-16 md:py-20">
@@ -84,12 +89,22 @@ export default function Footer() {
               </p>
               <div className="flex flex-col gap-2">
                 <a
-                  href={`mailto:${t('email')}`}
+                  href={`mailto:${email}`}
                   className="text-sm text-muted hover:text-primary transition-colors"
                 >
-                  {t('email')}
+                  {email}
                 </a>
-                <span className="text-sm text-dim">{t('location')}</span>
+                {settings.contact_whatsapp && (
+                  <a
+                    href={`https://wa.me/${settings.contact_whatsapp.replace(/[^0-9]/g, '')}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-muted hover:text-primary transition-colors"
+                  >
+                    {settings.contact_whatsapp}
+                  </a>
+                )}
+                <span className="text-sm text-dim">{location}</span>
               </div>
             </div>
 
@@ -98,7 +113,7 @@ export default function Footer() {
                 {t('social_title')}
               </p>
               <div className="flex items-center gap-4">
-                {SOCIAL_LINKS.map(({ href, label, Icon }) => (
+                {socialLinks.map(({ href, label, Icon }) => (
                   <a
                     key={label}
                     href={href}

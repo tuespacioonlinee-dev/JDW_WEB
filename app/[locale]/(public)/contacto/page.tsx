@@ -6,6 +6,7 @@ import Footer from '@/components/sections/Footer';
 import ContactForm from '@/components/sections/ContactForm';
 import Container from '@/components/ui/Container';
 import { Toaster } from 'sonner';
+import { getSettings } from '@/lib/services/settingsService';
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -24,6 +25,7 @@ export default async function ContactoPage({ params }: Props) {
   setRequestLocale(locale);
 
   const t = await getTranslations({ locale, namespace: 'contact_form' });
+  const settings = await getSettings();
 
   return (
     <>
@@ -42,7 +44,7 @@ export default async function ContactoPage({ params }: Props) {
             </h1>
             <p className="text-muted">{t('subtitle')}</p>
           </div>
-          <ContactForm />
+          <ContactForm calendlyUrl={settings.calendly_url} />
         </Container>
       </main>
       <Footer />

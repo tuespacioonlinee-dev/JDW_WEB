@@ -30,6 +30,9 @@ export const leadRateLimit = createRatelimiter(3, '1 h');
 // 30 content updates per minute per authenticated user
 export const contentRateLimit = createRatelimiter(30, '1 m');
 
+// 30 admin write operations per minute per authenticated user (cases, settings)
+export const adminWriteRateLimit = createRatelimiter(30, '1 m');
+
 // 5 admin login requests per hour per IP
 export const adminLoginRateLimit = createRatelimiter(5, '1 h');
 

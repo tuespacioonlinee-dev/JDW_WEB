@@ -8,9 +8,13 @@ import GlowOrb from '@/components/ui/GlowOrb';
 import { fadeInUp, staggerContainer, viewportOnce } from '@/components/motion/variants';
 import { ArrowRight } from 'lucide-react';
 
-export default function CtaFinal() {
+type Props = {
+  calendlyUrl?: string;
+};
+
+export default function CtaFinal({ calendlyUrl: calendlyUrlProp }: Props) {
   const t = useTranslations('cta_final');
-  const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL ?? '#';
+  const calendlyUrl = calendlyUrlProp || process.env.NEXT_PUBLIC_CALENDLY_URL || '#';
 
   return (
     <section

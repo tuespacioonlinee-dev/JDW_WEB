@@ -7,6 +7,7 @@ import Footer from '@/components/sections/Footer';
 import Container from '@/components/ui/Container';
 import Button from '@/components/ui/Button';
 import { CheckCircle, ArrowLeft } from 'lucide-react';
+import { getSettings } from '@/lib/services/settingsService';
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -19,7 +20,8 @@ export default async function GraciasPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'thanks' });
-  const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL ?? '#';
+  const settings = await getSettings();
+  const calendlyUrl = settings.calendly_url || '#';
 
   return (
     <>

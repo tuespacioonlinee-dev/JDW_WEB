@@ -13,6 +13,13 @@ const nextConfig = {
     ],
   },
 
+  experimental: {
+    // Allow case study image uploads (up to 4 MB) through server actions
+    serverActions: {
+      bodySizeLimit: '5mb',
+    },
+  },
+
   async headers() {
     return [
       {
