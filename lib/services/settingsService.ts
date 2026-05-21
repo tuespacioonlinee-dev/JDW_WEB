@@ -1,19 +1,10 @@
 import { cache } from 'react';
 import { createClient } from '@/lib/supabase/server';
 import { createAdminClient } from '@/lib/supabase/admin';
+import { SETTING_KEYS, type SettingKey, type SettingsMap } from '@/types/settings';
 
-export const SETTING_KEYS = [
-  'contact_email',
-  'contact_whatsapp',
-  'contact_location',
-  'social_github',
-  'social_linkedin',
-  'social_x',
-  'calendly_url',
-] as const;
-
-export type SettingKey = (typeof SETTING_KEYS)[number];
-export type SettingsMap = Partial<Record<SettingKey, string>>;
+export { SETTING_KEYS };
+export type { SettingKey, SettingsMap };
 
 // Env fallbacks applied when a setting is missing or empty (e.g. fresh DB)
 const ENV_FALLBACKS: SettingsMap = {

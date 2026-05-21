@@ -5,7 +5,7 @@ import { toast } from 'sonner';
 import Button from '@/components/ui/Button';
 import Input from '@/components/ui/Input';
 import { updateSettingsAction } from '@/app/_actions/settings';
-import { SETTING_KEYS, type SettingKey, type SettingsMap } from '@/lib/services/settingsService';
+import { SETTING_KEYS, type SettingKey, type SettingsMap } from '@/types/settings';
 
 type Props = {
   initial: SettingsMap;
