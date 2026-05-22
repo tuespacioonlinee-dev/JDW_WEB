@@ -44,7 +44,7 @@ export default async function ContactoPage({ params }: Props) {
             </h1>
             <p className="text-muted">{t('subtitle')}</p>
           </div>
-          <ContactForm calendlyUrl={settings.calendly_url} />
+          <ContactForm whatsappNumber={settings.contact_whatsapp} />
         </Container>
       </main>
       <Footer />

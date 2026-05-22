@@ -12,7 +12,6 @@ import Why from '@/components/sections/Why';
 import CtaFinal from '@/components/sections/CtaFinal';
 import Footer from '@/components/sections/Footer';
 import { getPublishedCases } from '@/lib/services/caseService';
-import { getSettings } from '@/lib/services/settingsService';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -41,7 +40,6 @@ export default async function HomePage({ params }: Props) {
 
   const cases = await getPublishedCases();
   const featuredImage = cases.find((c) => c.image_url)?.image_url ?? null;
-  const settings = await getSettings();
 
   return (
     <>
@@ -54,7 +52,7 @@ export default async function HomePage({ params }: Props) {
         <FeaturedCase imageUrl={featuredImage} />
         <Stack />
         <Why />
-        <CtaFinal calendlyUrl={settings.calendly_url} />
+        <CtaFinal />
       </main>
       <Footer />
     </>

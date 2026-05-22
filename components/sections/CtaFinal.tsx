@@ -1,6 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/navigation';
 import { motion } from 'framer-motion';
 import Container from '@/components/ui/Container';
 import Button from '@/components/ui/Button';
@@ -8,13 +9,8 @@ import GlowOrb from '@/components/ui/GlowOrb';
 import { fadeInUp, staggerContainer, viewportOnce } from '@/components/motion/variants';
 import { ArrowRight } from 'lucide-react';
 
-type Props = {
-  calendlyUrl?: string;
-};
-
-export default function CtaFinal({ calendlyUrl: calendlyUrlProp }: Props) {
+export default function CtaFinal() {
   const t = useTranslations('cta_final');
-  const calendlyUrl = calendlyUrlProp || process.env.NEXT_PUBLIC_CALENDLY_URL || '#';
 
   return (
     <section
@@ -54,12 +50,12 @@ export default function CtaFinal({ calendlyUrl: calendlyUrlProp }: Props) {
           </motion.p>
 
           <motion.div variants={fadeInUp} className="flex flex-col items-center gap-4">
-            <a href={calendlyUrl} target="_blank" rel="noopener noreferrer">
+            <Link href="/contacto">
               <Button size="lg" className="gap-2">
                 {t('cta')}
                 <ArrowRight size={18} aria-hidden="true" />
               </Button>
-            </a>
+            </Link>
 
             <p className="text-sm text-dim">
               {t('email_prefix')}{' '}

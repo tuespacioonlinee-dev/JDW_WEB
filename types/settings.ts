@@ -5,7 +5,6 @@ export const SETTING_KEYS = [
   'social_github',
   'social_linkedin',
   'social_x',
-  'calendly_url',
 ] as const;
 
 export type SettingKey = (typeof SETTING_KEYS)[number];

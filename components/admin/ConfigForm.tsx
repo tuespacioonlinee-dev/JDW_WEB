@@ -18,7 +18,6 @@ const FIELDS: { key: SettingKey; label: string; placeholder: string; type?: stri
   { key: 'social_github', label: 'GitHub', placeholder: 'https://github.com/...' },
   { key: 'social_linkedin', label: 'LinkedIn', placeholder: 'https://linkedin.com/company/...' },
   { key: 'social_x', label: 'Twitter / X', placeholder: 'https://twitter.com/...' },
-  { key: 'calendly_url', label: 'URL de Calendly', placeholder: 'https://calendly.com/...' },
 ];
 
 const ERROR_MESSAGES: Record<string, string> = {

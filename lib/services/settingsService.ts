@@ -7,9 +7,7 @@ export { SETTING_KEYS };
 export type { SettingKey, SettingsMap };
 
 // Env fallbacks applied when a setting is missing or empty (e.g. fresh DB)
-const ENV_FALLBACKS: SettingsMap = {
-  calendly_url: process.env.NEXT_PUBLIC_CALENDLY_URL ?? '',
-};
+const ENV_FALLBACKS: SettingsMap = {};
 
 function withFallbacks(map: SettingsMap): SettingsMap {
   const result = { ...map };

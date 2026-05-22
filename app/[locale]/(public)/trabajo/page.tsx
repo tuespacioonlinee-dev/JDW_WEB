@@ -8,7 +8,6 @@ import Container from '@/components/ui/Container';
 import Card from '@/components/ui/Card';
 import Badge from '@/components/ui/Badge';
 import { getPublishedCases } from '@/lib/services/caseService';
-import { getSettings } from '@/lib/services/settingsService';
 import type { Locale } from '@/types/locale';
 
 type Props = { params: Promise<{ locale: string }> };
@@ -24,7 +23,6 @@ export default async function TrabajoPage({ params }: Props) {
 
   const loc = (locale === 'en' ? 'en' : 'es') as Locale;
   const cases = await getPublishedCases();
-  const settings = await getSettings();
 
   return (
     <>
@@ -95,7 +93,7 @@ export default async function TrabajoPage({ params }: Props) {
             </Card>
           </div>
         </Container>
-        <CtaFinal calendlyUrl={settings.calendly_url} />
+        <CtaFinal />
       </main>
       <Footer />
     </>

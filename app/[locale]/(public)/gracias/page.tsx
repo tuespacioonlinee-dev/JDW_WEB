@@ -21,7 +21,12 @@ export default async function GraciasPage({ params }: Props) {
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'thanks' });
   const settings = await getSettings();
-  const calendlyUrl = settings.calendly_url || '#';
+  const waDigits = (settings.contact_whatsapp ?? '').replace(/\D/g, '');
+  const waUrl = waDigits
+    ? `https://wa.me/${waDigits}?text=${encodeURIComponent(
+        locale === 'es' ? '¡Hola JDC! Quiero coordinar una reunión.' : 'Hi JDC! I’d like to set up a meeting.',
+      )}`
+    : '#';
 
   return (
     <>
@@ -43,8 +48,8 @@ export default async function GraciasPage({ params }: Props) {
           </div>
 
           <div className="flex flex-col sm:flex-row items-center gap-4">
-            <a href={calendlyUrl} target="_blank" rel="noopener noreferrer">
-              <Button size="md">{t('cta_calendly')}</Button>
+            <a href={waUrl} target="_blank" rel="noopener noreferrer">
+              <Button size="md">{locale === 'es' ? 'Escribinos por WhatsApp' : 'Message us on WhatsApp'}</Button>
             </a>
             <Link href="/">
               <Button variant="ghost" size="md" className="gap-2">

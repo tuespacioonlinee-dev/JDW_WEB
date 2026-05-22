@@ -19,7 +19,6 @@ export const settingsSchema = z.object({
   social_github: urlOrEmpty,
   social_linkedin: urlOrEmpty,
   social_x: urlOrEmpty,
-  calendly_url: urlOrEmpty,
 });
 
 export type SettingsInput = z.infer<typeof settingsSchema>;

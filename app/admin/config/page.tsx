@@ -23,12 +23,13 @@ export default async function AdminConfigPage() {
       <main className="flex-1 p-8 overflow-auto">
         <h1 className="text-2xl font-medium text-primary mb-2">Configuración</h1>
         <p className="text-sm text-muted mb-8">
-          Datos de contacto, redes y agenda. Se reflejan en el sitio al instante.
+          Datos de contacto y redes. Se reflejan en el sitio al instante. El número de WhatsApp
+          es el destino del botón &quot;Agendar reunión&quot;.
         </p>
 
         <section className="mb-12 max-w-3xl">
           <h2 className="text-sm font-semibold text-primary uppercase tracking-wide border-b border-border pb-2 mb-4">
-            Contacto, redes y Calendly
+            Contacto y redes
           </h2>
           <ConfigForm initial={settings} />
         </section>
