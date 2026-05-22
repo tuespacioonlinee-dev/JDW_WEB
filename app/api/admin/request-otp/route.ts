@@ -41,6 +41,10 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error('[admin/request-otp]', err instanceof Error ? err.message : 'unknown');
-    return NextResponse.json({ ok: false, error: 'generic' }, { status: 500 });
+    // TEMP DEBUG
+    return NextResponse.json(
+      { ok: false, error: 'generic', _debug: { caught: err instanceof Error ? err.message : String(err) } },
+      { status: 500 },
+    );
   }
 }
