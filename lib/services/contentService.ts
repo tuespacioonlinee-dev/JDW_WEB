@@ -75,18 +75,17 @@ export async function updateContent(
 ): Promise<void> {
   const supabase = createAdminClient();
 
+  // Content rows are seeded; we only edit existing ones. Use UPDATE (not upsert)
+  // so we don't trip the NOT NULL constraints on section/field that an INSERT needs.
   const { error } = await supabase
     .from('site_content')
-    .upsert(
-      {
-        id,
-        locale,
-        value,
-        updated_by: updatedBy,
-        updated_at: new Date().toISOString(),
-      },
-      { onConflict: 'id,locale' },
-    );
+    .update({
+      value,
+      updated_by: updatedBy,
+      updated_at: new Date().toISOString(),
+    })
+    .eq('id', id)
+    .eq('locale', locale);
 
   if (error) {
     console.error('[contentService] updateContent failed:', error.code);
