@@ -152,7 +152,6 @@
     "message_placeholder": "¿Qué querés construir? Cuánto más detalle, mejor.",
     "submit": "Enviar mensaje",
     "submitting": "Enviando...",
-    "or_calendly": "O agendá directo en Calendly →",
     "error_name_min": "El nombre debe tener al menos 2 caracteres",
     "error_name_max": "El nombre no puede tener más de 100 caracteres",
     "error_name_invalid": "El nombre solo puede contener letras, espacios, guiones y puntos",
@@ -168,8 +167,7 @@
   },
   "thanks": {
     "title": "¡Mensaje recibido!",
-    "subtitle": "Te respondemos en menos de 24hs. Mientras tanto, podés agendar una reunión directamente.",
-    "cta_calendly": "Agendar en Calendly →",
+    "subtitle": "Te respondemos en menos de 24hs. Mientras tanto, podés escribirnos por WhatsApp.",
     "cta_back": "Volver al inicio"
   },
   "errors": {

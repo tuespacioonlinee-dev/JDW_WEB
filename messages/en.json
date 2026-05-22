@@ -152,7 +152,6 @@
     "message_placeholder": "What do you want to build? The more detail, the better.",
     "submit": "Send message",
     "submitting": "Sending...",
-    "or_calendly": "Or schedule directly on Calendly →",
     "error_name_min": "Name must be at least 2 characters",
     "error_name_max": "Name cannot exceed 100 characters",
     "error_name_invalid": "Name can only contain letters, spaces, hyphens, and dots",
@@ -168,8 +167,7 @@
   },
   "thanks": {
     "title": "Message received!",
-    "subtitle": "We'll get back to you within 24 hours. In the meantime, you can schedule a meeting directly.",
-    "cta_calendly": "Schedule on Calendly →",
+    "subtitle": "We'll get back to you within 24 hours. In the meantime, you can message us on WhatsApp.",
     "cta_back": "Back to home"
   },
   "errors": {
