@@ -54,10 +54,20 @@ export async function checkRateLimit(
     return { success: true, remaining: 999, reset: 0 };
   }
 
-  const result = await limiter.limit(identifier);
-  return {
-    success: result.success,
-    remaining: result.remaining,
-    reset: result.reset,
-  };
+  try {
+    const result = await limiter.limit(identifier);
+    return {
+      success: result.success,
+      remaining: result.remaining,
+      reset: result.reset,
+    };
+  } catch (err) {
+    // Fail open: if the rate-limit backend (Upstash) is unreachable, don't crash
+    // the whole request. Other protections (OTP, Turnstile, honeypot) still apply.
+    console.error(
+      '[rateLimit] limiter unavailable, failing open:',
+      err instanceof Error ? err.message : 'unknown',
+    );
+    return { success: true, remaining: 999, reset: 0 };
+  }
 }
