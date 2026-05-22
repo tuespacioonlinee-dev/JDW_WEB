@@ -22,7 +22,8 @@ export async function POST(req: NextRequest) {
     const adminEmail = getAdminAuthEmail();
     if (!adminEmail) {
       console.error('[admin/request-otp] ADMIN_EMAILS not configured');
-      return NextResponse.json({ ok: false, error: 'generic' }, { status: 500 });
+      // TEMP DEBUG
+      return NextResponse.json({ ok: false, error: 'generic', _debug: 'no_admin_email' }, { status: 500 });
     }
 
     const supabase = await createClient();
@@ -33,7 +34,8 @@ export async function POST(req: NextRequest) {
 
     if (error) {
       console.error('[admin/request-otp] signInWithOtp failed:', error.message);
-      return NextResponse.json({ ok: false, error: 'generic' }, { status: 500 });
+      // TEMP DEBUG
+      return NextResponse.json({ ok: false, error: 'generic', _debug: { msg: error.message, domain: adminEmail.split('@')[1] } }, { status: 500 });
     }
 
     return NextResponse.json({ ok: true });
