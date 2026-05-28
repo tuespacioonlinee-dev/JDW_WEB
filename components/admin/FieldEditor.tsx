@@ -27,13 +27,10 @@ export default function FieldEditor({ item, onSaved }: Props) {
       });
 
       if (!res.ok) {
-        // TEMP DEBUG — show real error in toast so we can diagnose without DevTools
-        let detail = `HTTP ${res.status}`;
-        try {
-          const json = (await res.json()) as { error?: string; debug?: string };
-          detail = `${json.error ?? 'err'} — ${json.debug ?? 'no detail'}`;
-        } catch {}
-        toast.error(`Error: ${detail}`, { duration: 15000 });
+        // TEMP DEBUG — read raw body as text so we see Vercel's HTML error page too
+        const raw = await res.text().catch(() => '<no body>');
+        const snippet = raw.slice(0, 400);
+        toast.error(`HTTP ${res.status}: ${snippet}`, { duration: 30000 });
         return;
       }
 
