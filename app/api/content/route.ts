@@ -47,11 +47,8 @@ export async function PATCH(req: NextRequest) {
 
     return NextResponse.json({ ok: true });
   } catch (err) {
-    const msg = err instanceof Error ? err.message : 'unknown';
-    const stack = err instanceof Error ? err.stack : undefined;
-    console.error('[api/content] Unexpected error:', msg, stack);
-    // TEMP DEBUG — remove after diagnosing
-    return NextResponse.json({ ok: false, error: 'generic', debug: msg }, { status: 500 });
+    console.error('[api/content] Unexpected error:', err instanceof Error ? err.message : 'unknown');
+    return NextResponse.json(GENERIC_ERROR, { status: 500 });
   }
 }
 

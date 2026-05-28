@@ -26,20 +26,13 @@ export default function FieldEditor({ item, onSaved }: Props) {
         body: JSON.stringify({ id: item.id, locale: item.locale as Locale, value }),
       });
 
-      if (!res.ok) {
-        // TEMP DEBUG — read raw body as text so we see Vercel's HTML error page too
-        const raw = await res.text().catch(() => '<no body>');
-        const snippet = raw.slice(0, 400);
-        toast.error(`HTTP ${res.status}: ${snippet}`, { duration: 30000 });
-        return;
-      }
+      if (!res.ok) throw new Error('Failed');
 
       await revalidateContent();
       onSaved?.(value);
       toast.success('Guardado');
-    } catch (err) {
-      const msg = err instanceof Error ? err.message : 'unknown';
-      toast.error(`Error: ${msg}`, { duration: 15000 });
+    } catch {
+      toast.error('Error al guardar');
     } finally {
       setSaving(false);
     }
