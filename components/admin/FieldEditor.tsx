@@ -26,13 +26,23 @@ export default function FieldEditor({ item, onSaved }: Props) {
         body: JSON.stringify({ id: item.id, locale: item.locale as Locale, value }),
       });
 
-      if (!res.ok) throw new Error('Failed');
+      if (!res.ok) {
+        // TEMP DEBUG — show real error in toast so we can diagnose without DevTools
+        let detail = `HTTP ${res.status}`;
+        try {
+          const json = (await res.json()) as { error?: string; debug?: string };
+          detail = `${json.error ?? 'err'} — ${json.debug ?? 'no detail'}`;
+        } catch {}
+        toast.error(`Error: ${detail}`, { duration: 15000 });
+        return;
+      }
 
       await revalidateContent();
       onSaved?.(value);
       toast.success('Guardado');
-    } catch {
-      toast.error('Error al guardar');
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'unknown';
+      toast.error(`Error: ${msg}`, { duration: 15000 });
     } finally {
       setSaving(false);
     }
