@@ -5,6 +5,7 @@ import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { headers } from 'next/headers';
 import { routing } from '@/i18n/routing';
+import { applyContentOverrides } from '@/lib/services/contentService';
 import '../globals.css';
 
 const inter = Inter({
@@ -48,7 +49,11 @@ export default async function LocaleLayout({ children, params }: Props) {
     notFound();
   }
 
-  const messages = await getMessages();
+  const staticMessages = await getMessages();
+  const messages = await applyContentOverrides(
+    staticMessages as Record<string, unknown>,
+    locale as 'es' | 'en',
+  );
   const nonce = (await headers()).get('x-nonce') ?? '';
 
   return (
