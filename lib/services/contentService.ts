@@ -27,10 +27,12 @@ export async function applyContentOverrides(
   const merged = structuredClone(staticMessages) as Record<string, Record<string, string>>;
 
   for (const row of data as Array<{ section: string; field: string; value: string }>) {
-    if (!merged[row.section] || typeof merged[row.section] !== 'object') {
-      merged[row.section] = {};
+    let bucket = merged[row.section];
+    if (!bucket || typeof bucket !== 'object') {
+      bucket = {};
+      merged[row.section] = bucket;
     }
-    merged[row.section][row.field] = row.value;
+    bucket[row.field] = row.value;
   }
 
   return merged;
